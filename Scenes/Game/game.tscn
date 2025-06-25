@@ -1,0 +1,71 @@
+[gd_scene load_steps=13 format=3 uid="uid://ba7giv1jubl0f"]
+
+[ext_resource type="Texture2D" uid="uid://ckb5ucep7731m" path="res://Assets/subdued_blue_nebulae_1.png" id="1_mn0sq"]
+[ext_resource type="PackedScene" uid="uid://brbyx3et3nabv" path="res://Scenes/Character/character.tscn" id="2_7h8qb"]
+[ext_resource type="PackedScene" uid="uid://cm4lty1ixnuln" path="res://Assets/candles/candle_stage0.glb" id="3_jd380"]
+[ext_resource type="PackedScene" uid="uid://chd1utsiemsa5" path="res://Assets/candles/candle_stage1.glb" id="4_proot"]
+[ext_resource type="PackedScene" uid="uid://titd4k6qjhyp" path="res://Assets/candles/candle_stage3.glb" id="5_5ytvm"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_6d41t"]
+panorama = ExtResource("1_mn0sq")
+
+[sub_resource type="Sky" id="Sky_v4yel"]
+sky_material = SubResource("PanoramaSkyMaterial_6d41t")
+
+[sub_resource type="Environment" id="Environment_b6egg"]
+background_mode = 2
+sky = SubResource("Sky_v4yel")
+tonemap_mode = 3
+glow_enabled = true
+glow_normalized = true
+glow_blend_mode = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_tw82k"]
+size = Vector3(10, 1, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kl8uv"]
+size = Vector3(10, 1, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2f6ny"]
+albedo_color = Color(1, 0.752941, 0, 1)
+roughness = 0.0
+emission_enabled = true
+emission = Color(1, 0.752941, 0, 1)
+emission_energy_multiplier = 5.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_g3tkx"]
+material = SubResource("StandardMaterial3D_2f6ny")
+
+[node name="Game" type="Node"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_b6egg")
+
+[node name="Platf" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Platf"]
+mesh = SubResource("BoxMesh_tw82k")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platf"]
+shape = SubResource("BoxShape3D_kl8uv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 2)
+cast_shadow = 0
+mesh = SubResource("SphereMesh_g3tkx")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="MeshInstance3D"]
+light_color = Color(1, 0.752941, 0, 1)
+shadow_enabled = true
+
+[node name="Character" parent="." instance=ExtResource("2_7h8qb")]
+
+[node name="candle_stage02" parent="." instance=ExtResource("3_jd380")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.724468, -0.470093, 1.90525)
+
+[node name="candle_stage12" parent="." instance=ExtResource("4_proot")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.275924, -0.462567, 1.8355)
+
+[node name="candle_stage32" parent="." instance=ExtResource("5_5ytvm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.29678, -0.456624, 2.0657)
