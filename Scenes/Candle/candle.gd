@@ -4,11 +4,12 @@ extends StaticBody3D
 @export var stages : Array[ArrayMesh]
 
 var damage := 5
+var is_active := true
 
 
 func _interact() -> void:
 	if not has_meta("health"):
-		print("HelthComponent not found on class " + self.get_class())
+		print("HealthComponent not found on class " + self.get_class())
 		return
 	
 	var health_component = get_meta("health") as HealthComponent
@@ -17,7 +18,7 @@ func _interact() -> void:
 
 func _on_timer_component_timeout() -> void:
 	if not has_meta("health"):
-		print("HelthComponent not found on class " + self.get_class())
+		print("HealthComponent not found on class " + self.get_class())
 		return
 	
 	var health_component = get_meta("health") as HealthComponent

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://oki04gubtfud"]
+[gd_scene load_steps=17 format=3 uid="uid://oki04gubtfud"]
 
 [ext_resource type="Script" path="res://Scenes/Candle/candle.gd" id="1_1yjq0"]
 [ext_resource type="ArrayMesh" uid="uid://ds8i51iexl2mv" path="res://Scenes/Candle/Stages/candle_stage_0.tres" id="2_7aeqd"]
@@ -11,6 +11,37 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4hu47"]
 size = Vector3(0.135742, 0.468994, 0.137695)
+
+[sub_resource type="Gradient" id="Gradient_452tv"]
+colors = PackedColorArray(1, 0.866537, 0.147384, 1, 1, 0.980587, 0.875983, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_eqnq5"]
+gradient = SubResource("Gradient_452tv")
+
+[sub_resource type="Curve" id="Curve_etf7h"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.252747), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_nvmoa"]
+curve = SubResource("Curve_etf7h")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gfps1"]
+gravity = Vector3(0, 0.3, 0)
+scale_curve = SubResource("CurveTexture_nvmoa")
+color = Color(1, 0.866667, 0.14902, 1)
+color_ramp = SubResource("GradientTexture1D_eqnq5")
+turbulence_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3uyct"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+albedo_color = Color(1, 0.466667, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_ybq1v"]
+material = SubResource("StandardMaterial3D_3uyct")
+radius = 0.025
+height = 0.05
 
 [node name="candle" type="StaticBody3D"]
 script = ExtResource("1_1yjq0")
@@ -36,6 +67,12 @@ component_name = "health"
 [node name="TimerComponent" type="Node" parent="."]
 script = ExtResource("5_rs2o5")
 component_name = "timer"
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44521, 0)
+amount = 30
+process_material = SubResource("ParticleProcessMaterial_gfps1")
+draw_pass_1 = SubResource("SphereMesh_ybq1v")
 
 [connection signal="interacted" from="InteractableComponent" to="." method="_interact"]
 [connection signal="health_updated" from="HealthComponent" to="." method="_on_health_component_health_updated"]
