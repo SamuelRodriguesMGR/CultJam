@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://picmfcolryw7"]
 
-[ext_resource type="Script" path="res://Scenes/BoxCandles/box_candles.gd" id="1_rori1"]
+[ext_resource type="Script" path="res://Scenes/Objects/BoxCandles/box_candles.gd" id="1_rori1"]
 [ext_resource type="Script" path="res://Components/interactable_component.gd" id="2_vmrrp"]
 [ext_resource type="Script" path="res://Components/carry_component.gd" id="3_ksfhb"]
 

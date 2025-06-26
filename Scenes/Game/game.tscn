@@ -2,9 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://ckb5ucep7731m" path="res://Assets/subdued_blue_nebulae_1.png" id="1_mn0sq"]
 [ext_resource type="PackedScene" uid="uid://brbyx3et3nabv" path="res://Scenes/Character/character.tscn" id="2_7h8qb"]
-[ext_resource type="PackedScene" uid="uid://oki04gubtfud" path="res://Scenes/Candle/candle.tscn" id="3_stger"]
-[ext_resource type="PackedScene" uid="uid://picmfcolryw7" path="res://Scenes/BoxCandles/box_candles.tscn" id="4_2jois"]
-[ext_resource type="PackedScene" uid="uid://b2n1ne8lcvmgd" path="res://Scenes/Candlesticks/candlesticks.tscn" id="5_qumqo"]
+[ext_resource type="PackedScene" uid="uid://oki04gubtfud" path="res://Scenes/Objects/Candle/candle.tscn" id="3_stger"]
+[ext_resource type="PackedScene" uid="uid://picmfcolryw7" path="res://Scenes/Objects/BoxCandles/box_candles.tscn" id="4_2jois"]
+[ext_resource type="PackedScene" uid="uid://b2n1ne8lcvmgd" path="res://Scenes/Objects/Candlesticks/candlesticks.tscn" id="5_qumqo"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_6d41t"]
 panorama = ExtResource("1_mn0sq")
