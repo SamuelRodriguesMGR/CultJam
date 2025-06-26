@@ -23,6 +23,7 @@ const FOV_CHANGE : float = 1.5
 var move_direction : Vector3
 var speed : float
 
+var carry_obj = null
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -78,6 +79,9 @@ func _physics_process(delta: float) -> void:
 	var velocity_clamped = clamp(velocity.length(), 0.5, SPRINT_SPEED * 2)
 	var target_fov = BASE_FOV + FOV_CHANGE * velocity_clamped
 	camera.fov = lerp(camera.fov, target_fov, delta * 8.0)
+	
+	if is_instance_valid(carry_obj):
+		carry_obj.position = marker_interact.global_position
 
 	move_and_slide()
 
@@ -98,7 +102,8 @@ func key_process(event: InputEventKey) -> void:
 		
 		if is_instance_valid(object) and object.has_meta("interactable"):
 			(object.get_meta("interactable") as InteractableComponent).interact()
-
+			
+			carry_obj = object
 
 func ray_cast_interact_process() -> Object:
 	if not %RayCastInteract.is_colliding():
