@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://b2n1ne8lcvmgd"]
+
+[ext_resource type="Script" path="res://Scenes/Candlesticks/candlesticks.gd" id="1_kdbk8"]
+[ext_resource type="Script" path="res://Components/interactable_component.gd" id="2_lgf7i"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_bokri"]
+height = 0.5
+radius = 0.1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_foe1w"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.5
+
+[node name="Candlesticks" type="StaticBody3D"]
+script = ExtResource("1_kdbk8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_bokri")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_foe1w")
+
+[node name="InteractableComponent" type="Node" parent="."]
+script = ExtResource("2_lgf7i")
+component_name = "interactable"
+
+[connection signal="interacted" from="InteractableComponent" to="." method="_on_interactable_component_interacted"]

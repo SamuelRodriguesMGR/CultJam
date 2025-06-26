@@ -5,7 +5,7 @@ const WALK_SPEED : float = 5.0
 const SPRINT_SPEED : float = 8.0
 const JUMP_VELOCITY : float = 4.8
 const FRICTION : float = 0.1
-const SENSITIVITY : float = 0.004#0.01 # Player
+const SENSITIVITY : float = 0.004
 
 #bob variables
 const BOB_FREQ : float= 2.4
@@ -18,6 +18,8 @@ const FOV_CHANGE : float = 1.5
 
 @onready var camera : Camera3D = $Body/Camera3D
 @onready var body : Node3D = $Body
+@onready var hand : Node3D = %Hand
+
 
 var move_direction : Vector3
 var speed : float
@@ -117,7 +119,7 @@ func want_carry_process(object: PackedScene) -> void:
 	
 	var inst_object : Node3D = object.instantiate()
 	
-	%Hand.add_child(inst_object)
+	hand.add_child(inst_object)
 	
 	carry_obj = inst_object
 
@@ -128,7 +130,7 @@ func want_object_process(object_name: String, callback: Callable) -> void:
 	
 	carry_obj = null
 	
-	for child in %Hand.get_children():
+	for child in hand.get_children():
 		child.queue_free()
 	
 	callback.call()
