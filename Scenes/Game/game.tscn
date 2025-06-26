@@ -1,10 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://ba7giv1jubl0f"]
+[gd_scene load_steps=11 format=3 uid="uid://ba7giv1jubl0f"]
 
 [ext_resource type="Texture2D" uid="uid://ckb5ucep7731m" path="res://Assets/subdued_blue_nebulae_1.png" id="1_mn0sq"]
 [ext_resource type="PackedScene" uid="uid://brbyx3et3nabv" path="res://Scenes/Character/character.tscn" id="2_7h8qb"]
-[ext_resource type="PackedScene" uid="uid://cm4lty1ixnuln" path="res://Assets/candles/candle_stage0.glb" id="3_jd380"]
-[ext_resource type="PackedScene" uid="uid://chd1utsiemsa5" path="res://Assets/candles/candle_stage1.glb" id="4_proot"]
-[ext_resource type="PackedScene" uid="uid://titd4k6qjhyp" path="res://Assets/candles/candle_stage3.glb" id="5_5ytvm"]
+[ext_resource type="PackedScene" uid="uid://oki04gubtfud" path="res://Scenes/Candle/candle.tscn" id="3_stger"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_6d41t"]
 panorama = ExtResource("1_mn0sq")
@@ -61,11 +59,5 @@ shadow_enabled = true
 
 [node name="Character" parent="." instance=ExtResource("2_7h8qb")]
 
-[node name="candle_stage02" parent="." instance=ExtResource("3_jd380")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.724468, -0.470093, 1.90525)
-
-[node name="candle_stage12" parent="." instance=ExtResource("4_proot")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.275924, -0.462567, 1.8355)
-
-[node name="candle_stage32" parent="." instance=ExtResource("5_5ytvm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.29678, -0.456624, 2.0657)
+[node name="candle" parent="." instance=ExtResource("3_stger")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.549356, -0.5, 0.676431)

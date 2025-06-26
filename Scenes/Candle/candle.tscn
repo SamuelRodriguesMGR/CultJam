@@ -1,0 +1,42 @@
+[gd_scene load_steps=10 format=3 uid="uid://oki04gubtfud"]
+
+[ext_resource type="Script" path="res://Scenes/Candle/candle.gd" id="1_1yjq0"]
+[ext_resource type="ArrayMesh" uid="uid://ds8i51iexl2mv" path="res://Scenes/Candle/Stages/candle_stage_0.tres" id="2_7aeqd"]
+[ext_resource type="Script" path="res://Components/interactable_component.gd" id="2_34g7k"]
+[ext_resource type="Script" path="res://Components/health_component.gd" id="3_sdtn5"]
+[ext_resource type="ArrayMesh" uid="uid://hwqwwsrku5oj" path="res://Scenes/Candle/Stages/candle_stage_1.tres" id="3_w2nyl"]
+[ext_resource type="ArrayMesh" uid="uid://dbhy5rgs1kal0" path="res://Scenes/Candle/Stages/candle_stage_2.tres" id="4_yg84n"]
+[ext_resource type="Script" path="res://Components/timer_component.gd" id="5_rs2o5"]
+[ext_resource type="ArrayMesh" uid="uid://dgm4cs1q8slbp" path="res://Scenes/Candle/Stages/candle_stage_3.tres" id="5_s8mga"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4hu47"]
+size = Vector3(0.135742, 0.468994, 0.137695)
+
+[node name="candle" type="StaticBody3D"]
+script = ExtResource("1_1yjq0")
+stages = Array[ArrayMesh]([ExtResource("2_7aeqd"), ExtResource("3_w2nyl"), ExtResource("4_yg84n"), ExtResource("5_s8mga")])
+
+[node name="CandleMesh" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+mesh = ExtResource("2_7aeqd")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.210571, 0)
+shape = SubResource("BoxShape3D_4hu47")
+
+[node name="InteractableComponent" type="Node" parent="."]
+script = ExtResource("2_34g7k")
+component_name = "interactable"
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("3_sdtn5")
+component_name = "health"
+
+[node name="TimerComponent" type="Node" parent="."]
+script = ExtResource("5_rs2o5")
+component_name = "timer"
+
+[connection signal="interacted" from="InteractableComponent" to="." method="_interact"]
+[connection signal="health_updated" from="HealthComponent" to="." method="_on_health_component_health_updated"]
+[connection signal="timeout" from="TimerComponent" to="." method="_on_timer_component_timeout"]
