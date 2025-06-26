@@ -25,4 +25,7 @@ mesh = SubResource("CylinderMesh_foe1w")
 script = ExtResource("2_lgf7i")
 component_name = "interactable"
 
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.27, 0)
+
 [connection signal="interacted" from="InteractableComponent" to="." method="_on_interactable_component_interacted"]
