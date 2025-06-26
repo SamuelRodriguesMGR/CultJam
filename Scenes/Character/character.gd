@@ -22,13 +22,15 @@ const FOV_CHANGE : float = 1.5
 var move_direction : Vector3
 var speed : float
 
-func _ready():
+
+func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
-func _unhandled_input(event):
-	if event.is_action_pressed(&"ui_cancel"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey:
+		key_process(event)
+
 	if event is InputEventMouseButton:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		
@@ -37,7 +39,8 @@ func _unhandled_input(event):
 		camera.rotate_x(-event.relative.y * SENSITIVITY)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))
 
-func _physics_process(delta):
+
+func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	#if not is_on_floor():
 		#velocity += get_gravity() * delta
@@ -77,8 +80,26 @@ func _physics_process(delta):
 
 	move_and_slide()
 
-func _headbob(time) -> Vector3:
+
+func _headbob(time: float) -> Vector3:
 	var pos = Vector3.ZERO
 	pos.y = sin(time * BOB_FREQ) * BOB_AMP
 	pos.x = cos(time * BOB_FREQ / 2) * BOB_AMP
 	return pos
+
+
+func key_process(event: InputEventKey) -> void:
+	if event.is_action_pressed("ui_cancel"):
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	
+	if event.keycode == KEY_E:
+		var object := ray_cast_interact_process()
+		
+		if object.has_meta("interactable"):
+			(object.get_meta("interactable") as InteractableComponent).interact()
+
+
+func ray_cast_interact_process() -> Object:
+	if not %RayCastInteract.is_colliding():
+		return null
+	return %RayCastInteract.get_collider()
