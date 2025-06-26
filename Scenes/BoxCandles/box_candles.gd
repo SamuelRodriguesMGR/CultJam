@@ -1,8 +1,6 @@
 extends RigidBody3D
 
-
-const CANDLE = preload("uid://caq83vst1bq6g")
-
+const CANDLE = preload("res://Scenes/Candle/candle.tscn")
 
 func _on_interactable_component_interacted() -> void:
 	assert(has_meta("carry"))

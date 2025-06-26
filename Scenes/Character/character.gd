@@ -24,7 +24,7 @@ const FOV_CHANGE : float = 1.5
 var move_direction : Vector3
 var speed : float
 
-var carry_obj : MeshInstance3D = null
+var carry_obj = null
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -118,8 +118,8 @@ func want_carry_process(object: PackedScene) -> void:
 		return
 	
 	var inst_object : Node3D = object.instantiate()
-	
 	hand.add_child(inst_object)
+	inst_object.get_node("CollisionShape3D").disabled = true
 	
 	carry_obj = inst_object
 
