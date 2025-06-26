@@ -3,19 +3,16 @@
 [ext_resource type="Script" path="res://Scenes/Objects/BoxCandles/box_candles.gd" id="1_rori1"]
 [ext_resource type="Script" path="res://Components/interactable_component.gd" id="2_vmrrp"]
 [ext_resource type="Script" path="res://Components/carry_component.gd" id="3_ksfhb"]
+[ext_resource type="PackedScene" uid="uid://cndb2hwd62ome" path="res://Assets/candle_box/candle_box.glb" id="4_j1vxs"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a2x34"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_t31o7"]
+size = Vector3(0.644287, 0.595947, 0.584961)
 
 [node name="BoxCandles" type="RigidBody3D"]
 script = ExtResource("1_rori1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_a2x34")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_t31o7")
 
 [node name="InteractableComponent" type="Node" parent="."]
 script = ExtResource("2_vmrrp")
@@ -24,5 +21,7 @@ component_name = "interactable"
 [node name="CarryComponent" type="Node" parent="."]
 script = ExtResource("3_ksfhb")
 component_name = "carry"
+
+[node name="candle_box2" parent="." instance=ExtResource("4_j1vxs")]
 
 [connection signal="interacted" from="InteractableComponent" to="." method="_on_interactable_component_interacted"]

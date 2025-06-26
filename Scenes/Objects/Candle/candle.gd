@@ -44,8 +44,10 @@ func _on_health_component_health_updated(new_health: int) -> void:
 		%AnimationPlayer.play("state_1")
 	elif new_health > 20:
 		%AnimationPlayer.play("state_2")
-	else:
+	elif new_health > 0:
 		%AnimationPlayer.play("state_3")
+	else:
+		%AnimationPlayer.play("state_4")
 
 
 func get_component(component_name: String) -> BaseComponent:

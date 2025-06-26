@@ -1,8 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://oki04gubtfud"]
+[gd_scene load_steps=24 format=3 uid="uid://oki04gubtfud"]
 
 [ext_resource type="Script" path="res://Scenes/Objects/Candle/candle.gd" id="1_1yjq0"]
 [ext_resource type="ArrayMesh" uid="uid://ds8i51iexl2mv" path="res://Scenes/Objects/Candle/Stages/candle_stage_0.tres" id="2_7aeqd"]
 [ext_resource type="Script" path="res://Components/interactable_component.gd" id="2_34g7k"]
+[ext_resource type="ArrayMesh" uid="uid://cagngrgnsflxa" path="res://Scenes/Objects/Candle/Stages/candle_stage_4.tres" id="2_nw4g1"]
 [ext_resource type="Script" path="res://Components/health_component.gd" id="3_sdtn5"]
 [ext_resource type="ArrayMesh" uid="uid://hwqwwsrku5oj" path="res://Scenes/Objects/Candle/Stages/candle_stage_1.tres" id="3_w2nyl"]
 [ext_resource type="ArrayMesh" uid="uid://dbhy5rgs1kal0" path="res://Scenes/Objects/Candle/Stages/candle_stage_2.tres" id="4_yg84n"]
@@ -155,19 +156,36 @@ tracks/1/keys = {
 "values": [Vector3(0.00238394, 0.146622, -0.000179656)]
 }
 
+[sub_resource type="Animation" id="Animation_i8kwu"]
+resource_name = "state_4"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CandleMesh:mesh")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_nw4g1")]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7r04d"]
 _data = {
 "state_0": SubResource("Animation_4sb6k"),
 "state_1": SubResource("Animation_ttuwd"),
 "state_2": SubResource("Animation_jttmu"),
-"state_3": SubResource("Animation_oesq7")
+"state_3": SubResource("Animation_oesq7"),
+"state_4": SubResource("Animation_i8kwu")
 }
 
 [node name="candle" type="StaticBody3D"]
 script = ExtResource("1_1yjq0")
 
 [node name="CandleMesh" type="MeshInstance3D" parent="."]
-mesh = ExtResource("5_s8mga")
+mesh = ExtResource("2_7aeqd")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -188,7 +206,7 @@ component_name = "timer"
 
 [node name="FireParticles" type="GPUParticles3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00238394, 0.146622, -0.000179656)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44978, 0)
 amount = 30
 process_material = SubResource("ParticleProcessMaterial_gfps1")
 draw_pass_1 = SubResource("SphereMesh_ybq1v")
