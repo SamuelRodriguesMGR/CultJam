@@ -16,6 +16,7 @@ var t_bob : float = 0.0
 const BASE_FOV : float = 75.0
 const FOV_CHANGE : float = 1.5
 
+@onready var marker_interact : Marker3D = $Body/Camera3D/RayCastInteract/MarkerInteract
 @onready var camera : Camera3D = $Body/Camera3D
 @onready var body : Node3D = $Body
 
@@ -95,7 +96,7 @@ func key_process(event: InputEventKey) -> void:
 	if event.keycode == KEY_E:
 		var object := ray_cast_interact_process()
 		
-		if object.has_meta("interactable"):
+		if is_instance_valid(object) and object.has_meta("interactable"):
 			(object.get_meta("interactable") as InteractableComponent).interact()
 
 
