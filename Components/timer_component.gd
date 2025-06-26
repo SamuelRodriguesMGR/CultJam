@@ -17,3 +17,11 @@ func _ready() -> void:
 func _on_timeout() -> void:
 	timeout.emit()
 	timer.start(duration)
+
+
+func start() -> void:
+	timer.start(duration)
+
+
+func stop() -> void:
+	timer.stop()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://oki04gubtfud"]
+[gd_scene load_steps=22 format=3 uid="uid://oki04gubtfud"]
 
 [ext_resource type="Script" path="res://Scenes/Candle/candle.gd" id="1_1yjq0"]
 [ext_resource type="ArrayMesh" uid="uid://ds8i51iexl2mv" path="res://Scenes/Candle/Stages/candle_stage_0.tres" id="2_7aeqd"]
@@ -43,13 +43,131 @@ material = SubResource("StandardMaterial3D_3uyct")
 radius = 0.025
 height = 0.05
 
+[sub_resource type="Animation" id="Animation_4sb6k"]
+resource_name = "state_0"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CandleMesh:mesh")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_7aeqd")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FireParticles:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.44978, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ttuwd"]
+resource_name = "state_1"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CandleMesh:mesh")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_w2nyl")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FireParticles:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.0117785, 0.427409, -0.0247022)]
+}
+
+[sub_resource type="Animation" id="Animation_jttmu"]
+resource_name = "state_2"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CandleMesh:mesh")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_yg84n")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FireParticles:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.0017974, 0.303764, -0.000179656)]
+}
+
+[sub_resource type="Animation" id="Animation_oesq7"]
+resource_name = "state_3"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CandleMesh:mesh")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_s8mga")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FireParticles:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.00238394, 0.146622, -0.000179656)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7r04d"]
+_data = {
+"state_0": SubResource("Animation_4sb6k"),
+"state_1": SubResource("Animation_ttuwd"),
+"state_2": SubResource("Animation_jttmu"),
+"state_3": SubResource("Animation_oesq7")
+}
+
 [node name="candle" type="StaticBody3D"]
 script = ExtResource("1_1yjq0")
-stages = Array[ArrayMesh]([ExtResource("2_7aeqd"), ExtResource("3_w2nyl"), ExtResource("4_yg84n"), ExtResource("5_s8mga")])
 
 [node name="CandleMesh" type="MeshInstance3D" parent="."]
-unique_name_in_owner = true
-mesh = ExtResource("2_7aeqd")
+mesh = ExtResource("5_s8mga")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -68,12 +186,20 @@ component_name = "health"
 script = ExtResource("5_rs2o5")
 component_name = "timer"
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44521, 0)
+[node name="FireParticles" type="GPUParticles3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00238394, 0.146622, -0.000179656)
 amount = 30
 process_material = SubResource("ParticleProcessMaterial_gfps1")
 draw_pass_1 = SubResource("SphereMesh_ybq1v")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_7r04d")
+}
+
 [connection signal="interacted" from="InteractableComponent" to="." method="_interact"]
+[connection signal="death" from="HealthComponent" to="." method="_on_health_component_death"]
 [connection signal="health_updated" from="HealthComponent" to="." method="_on_health_component_health_updated"]
 [connection signal="timeout" from="TimerComponent" to="." method="_on_timer_component_timeout"]
