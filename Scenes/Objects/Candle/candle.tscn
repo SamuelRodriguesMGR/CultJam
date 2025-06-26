@@ -1,13 +1,13 @@
 [gd_scene load_steps=22 format=3 uid="uid://oki04gubtfud"]
 
-[ext_resource type="Script" path="res://Scenes/Candle/candle.gd" id="1_1yjq0"]
-[ext_resource type="ArrayMesh" uid="uid://ds8i51iexl2mv" path="res://Scenes/Candle/Stages/candle_stage_0.tres" id="2_7aeqd"]
+[ext_resource type="Script" path="res://Scenes/Objects/Candle/candle.gd" id="1_1yjq0"]
+[ext_resource type="ArrayMesh" uid="uid://ds8i51iexl2mv" path="res://Scenes/Objects/Candle/Stages/candle_stage_0.tres" id="2_7aeqd"]
 [ext_resource type="Script" path="res://Components/interactable_component.gd" id="2_34g7k"]
 [ext_resource type="Script" path="res://Components/health_component.gd" id="3_sdtn5"]
-[ext_resource type="ArrayMesh" uid="uid://hwqwwsrku5oj" path="res://Scenes/Candle/Stages/candle_stage_1.tres" id="3_w2nyl"]
-[ext_resource type="ArrayMesh" uid="uid://dbhy5rgs1kal0" path="res://Scenes/Candle/Stages/candle_stage_2.tres" id="4_yg84n"]
+[ext_resource type="ArrayMesh" uid="uid://hwqwwsrku5oj" path="res://Scenes/Objects/Candle/Stages/candle_stage_1.tres" id="3_w2nyl"]
+[ext_resource type="ArrayMesh" uid="uid://dbhy5rgs1kal0" path="res://Scenes/Objects/Candle/Stages/candle_stage_2.tres" id="4_yg84n"]
 [ext_resource type="Script" path="res://Components/timer_component.gd" id="5_rs2o5"]
-[ext_resource type="ArrayMesh" uid="uid://dgm4cs1q8slbp" path="res://Scenes/Candle/Stages/candle_stage_3.tres" id="5_s8mga"]
+[ext_resource type="ArrayMesh" uid="uid://dgm4cs1q8slbp" path="res://Scenes/Objects/Candle/Stages/candle_stage_3.tres" id="5_s8mga"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4hu47"]
 size = Vector3(0.135742, 0.468994, 0.137695)

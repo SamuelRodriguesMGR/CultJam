@@ -119,7 +119,6 @@ func want_carry_process(object: PackedScene) -> void:
 	
 	var inst_object : Node3D = object.instantiate()
 	hand.add_child(inst_object)
-	inst_object.get_node("CollisionShape3D").disabled = true
 	
 	carry_obj = inst_object
 
@@ -128,9 +127,14 @@ func want_object_process(object_name: String, callback: Callable) -> void:
 	if not carry_obj or not carry_obj.name == object_name:
 		return
 	
+	clear_object_hand()
+	
+	callback.call()
+
+func clear_object_hand():
+	# Очищает предмет в руке
+	
 	carry_obj = null
 	
 	for child in hand.get_children():
 		child.queue_free()
-	
-	callback.call()
