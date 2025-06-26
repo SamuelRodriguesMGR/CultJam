@@ -16,17 +16,18 @@ var t_bob : float = 0.0
 const BASE_FOV : float = 75.0
 const FOV_CHANGE : float = 1.5
 
-@onready var marker_interact : Marker3D = $Body/Camera3D/RayCastInteract/MarkerInteract
 @onready var camera : Camera3D = $Body/Camera3D
 @onready var body : Node3D = $Body
 
 var move_direction : Vector3
 var speed : float
 
-var carry_obj = null
+var carry_obj : MeshInstance3D = null
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	GlobalSignals.want_carry.connect(want_carry_process)
+	GlobalSignals.want_object.connect(want_object_process)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -79,9 +80,6 @@ func _physics_process(delta: float) -> void:
 	var velocity_clamped = clamp(velocity.length(), 0.5, SPRINT_SPEED * 2)
 	var target_fov = BASE_FOV + FOV_CHANGE * velocity_clamped
 	camera.fov = lerp(camera.fov, target_fov, delta * 8.0)
-	
-	if is_instance_valid(carry_obj):
-		carry_obj.position = marker_interact.global_position
 
 	move_and_slide()
 
@@ -100,12 +98,37 @@ func key_process(event: InputEventKey) -> void:
 	if event.keycode == KEY_E:
 		var object := ray_cast_interact_process()
 		
-		if is_instance_valid(object) and object.has_meta("interactable"):
+		if not object:
+			return
+		
+		if object.has_meta("interactable"):
 			(object.get_meta("interactable") as InteractableComponent).interact()
-			
-			carry_obj = object
+
 
 func ray_cast_interact_process() -> Object:
 	if not %RayCastInteract.is_colliding():
 		return null
 	return %RayCastInteract.get_collider()
+
+
+func want_carry_process(object: PackedScene) -> void:
+	if carry_obj:
+		return
+	
+	var inst_object : Node3D = object.instantiate()
+	
+	%Hand.add_child(inst_object)
+	
+	carry_obj = inst_object
+
+
+func want_object_process(object_name: String, callback: Callable) -> void:
+	if not carry_obj or not carry_obj.name == object_name:
+		return
+	
+	carry_obj = null
+	
+	for child in %Hand.get_children():
+		child.queue_free()
+	
+	callback.call()

@@ -167,7 +167,7 @@ _data = {
 script = ExtResource("1_1yjq0")
 
 [node name="CandleMesh" type="MeshInstance3D" parent="."]
-mesh = ExtResource("5_s8mga")
+mesh = ExtResource("2_7aeqd")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -188,7 +188,7 @@ component_name = "timer"
 
 [node name="FireParticles" type="GPUParticles3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00238394, 0.146622, -0.000179656)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44978, 0)
 amount = 30
 process_material = SubResource("ParticleProcessMaterial_gfps1")
 draw_pass_1 = SubResource("SphereMesh_ybq1v")

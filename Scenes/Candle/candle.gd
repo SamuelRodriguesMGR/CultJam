@@ -9,8 +9,16 @@ func _interact() -> void:
 	var health_component = get_component("health") as HealthComponent
 	
 	if health_component.current_health <= 0:
-		health_component.restore_health()
-	
+		GlobalSignals.want_object.emit("candle", want_object_callback)
+	else:
+		var timer_component = get_component("timer") as TimerComponent
+		timer_component.start()
+		turn_fire(true)
+
+
+func want_object_callback() -> void:
+	var health_component = get_component("health") as HealthComponent
+	health_component.restore_health()
 	var timer_component = get_component("timer") as TimerComponent
 	timer_component.start()
 	turn_fire(true)

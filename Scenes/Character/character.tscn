@@ -19,5 +19,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 unique_name_in_owner = true
 target_position = Vector3(0, 0, -2)
 
-[node name="MarkerInteract" type="Marker3D" parent="Body/Camera3D/RayCastInteract"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+[node name="Hand" type="Node3D" parent="Body/Camera3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, -0.189018, -0.7)
