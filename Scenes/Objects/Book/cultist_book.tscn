@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Scenes/Objects/Book/cultist_book.gd" id="1_0d13f"]
 [ext_resource type="Texture2D" uid="uid://d3elevf7xw8ab" path="res://Assets/cultist_book/cultist_book_RGB_32dfc6c0dfc64770b54791373eb4ce9c_SM_Open_book_T_open_book_BaseColor_1001.png" id="1_arw3h"]
-[ext_resource type="PackedScene" uid="uid://2ugv84bjbs6d" path="res://Components/timer_component.tscn" id="2_fov3r"]
-[ext_resource type="PackedScene" uid="uid://dypqsqmnry031" path="res://Components/continuous_interactive_component.tscn" id="4_w2nqg"]
+[ext_resource type="PackedScene" uid="uid://2ugv84bjbs6d" path="res://Components/TimerComponent/timer_component.tscn" id="2_fov3r"]
+[ext_resource type="PackedScene" uid="uid://dypqsqmnry031" path="res://Components/ContinuousInteractiveComponent/continuous_interactive_component.tscn" id="4_w2nqg"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yocfk"]
 resource_name = "object_0.1001"
