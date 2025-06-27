@@ -8,11 +8,13 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_a2x34"]
 size = Vector3(0.644287, 0.595947, 0.584961)
 
-[node name="BoxCandles" type="RigidBody3D"]
+[node name="BoxCandles" type="StaticBody3D"]
 script = ExtResource("1_rori1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_a2x34")
+
+[node name="candle_box2" parent="." instance=ExtResource("4_j1vxs")]
 
 [node name="InteractableComponent" type="Node" parent="."]
 script = ExtResource("2_vmrrp")
@@ -21,7 +23,5 @@ component_name = "interactable"
 [node name="CarryComponent" type="Node" parent="."]
 script = ExtResource("3_ksfhb")
 component_name = "carry"
-
-[node name="candle_box2" parent="." instance=ExtResource("4_j1vxs")]
 
 [connection signal="interacted" from="InteractableComponent" to="." method="_on_interactable_component_interacted"]
