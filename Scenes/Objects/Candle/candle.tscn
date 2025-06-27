@@ -3,11 +3,11 @@
 [ext_resource type="Script" path="res://Scenes/Objects/Candle/candle.gd" id="1_1yjq0"]
 [ext_resource type="ArrayMesh" uid="uid://ds8i51iexl2mv" path="res://Scenes/Objects/Candle/Stages/candle_stage_0.tres" id="2_7aeqd"]
 [ext_resource type="ArrayMesh" uid="uid://cagngrgnsflxa" path="res://Scenes/Objects/Candle/Stages/candle_stage_4.tres" id="2_nw4g1"]
-[ext_resource type="PackedScene" uid="uid://b5jka2gygoge3" path="res://Components/interactable_component.tscn" id="3_n82m5"]
-[ext_resource type="Script" path="res://Components/health_component.gd" id="3_sdtn5"]
+[ext_resource type="PackedScene" uid="uid://b5jka2gygoge3" path="res://Components/InteractableComponent/interactable_component.tscn" id="3_n82m5"]
 [ext_resource type="ArrayMesh" uid="uid://hwqwwsrku5oj" path="res://Scenes/Objects/Candle/Stages/candle_stage_1.tres" id="3_w2nyl"]
+[ext_resource type="PackedScene" uid="uid://cbc76s5cpglmj" path="res://Components/HealthComponent/health_component.tscn" id="4_x0vfx"]
 [ext_resource type="ArrayMesh" uid="uid://dbhy5rgs1kal0" path="res://Scenes/Objects/Candle/Stages/candle_stage_2.tres" id="4_yg84n"]
-[ext_resource type="PackedScene" uid="uid://2ugv84bjbs6d" path="res://Components/timer_component.tscn" id="5_6rlr2"]
+[ext_resource type="PackedScene" uid="uid://2ugv84bjbs6d" path="res://Components/TimerComponent/timer_component.tscn" id="5_6rlr2"]
 [ext_resource type="ArrayMesh" uid="uid://dgm4cs1q8slbp" path="res://Scenes/Objects/Candle/Stages/candle_stage_3.tres" id="5_s8mga"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4hu47"]
@@ -194,9 +194,7 @@ shape = SubResource("BoxShape3D_4hu47")
 
 [node name="InteractableComponent" parent="." instance=ExtResource("3_n82m5")]
 
-[node name="HealthComponent" type="Node" parent="."]
-script = ExtResource("3_sdtn5")
-component_name = "health"
+[node name="HealthComponent" parent="." instance=ExtResource("4_x0vfx")]
 
 [node name="TimerComponent" parent="." instance=ExtResource("5_6rlr2")]
 

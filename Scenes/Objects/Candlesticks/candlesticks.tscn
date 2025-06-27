@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://b2n1ne8lcvmgd"]
 
 [ext_resource type="Script" path="res://Scenes/Objects/Candlesticks/candlesticks.gd" id="1_kdbk8"]
-[ext_resource type="Script" path="res://Components/interactable_component.gd" id="2_lgf7i"]
+[ext_resource type="Script" path="res://Components/InteractableComponent/interactable_component.gd" id="2_lgf7i"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_bokri"]
 height = 0.5

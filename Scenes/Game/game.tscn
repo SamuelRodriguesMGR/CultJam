@@ -6,8 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://picmfcolryw7" path="res://Scenes/Objects/BoxCandles/box_candles.tscn" id="4_2jois"]
 [ext_resource type="Script" path="res://Scenes/Game/ui.gd" id="5_imgdt"]
 [ext_resource type="PackedScene" uid="uid://3tohsg0odenm" path="res://Scenes/Objects/Book/cultist_book.tscn" id="5_rosw0"]
+[ext_resource type="Script" path="res://Scenes/Game/candle_manager.gd" id="7_520wy"]
+[ext_resource type="PackedScene" uid="uid://nj5aw8blfs55" path="res://Scenes/Objects/CircleOfSacrifices/circle_of_sacrifices.tscn" id="7_udxhr"]
 [ext_resource type="PackedScene" uid="uid://cry3uan6bwhru" path="res://Scenes/Objects/Chicken/chicken.tscn" id="7_6s7ry"]
 [ext_resource type="PackedScene" uid="uid://bussm7m1ebsu8" path="res://Scenes/Objects/BoxChicken/box_chicken.tscn" id="8_s4a7l"]
+
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_6d41t"]
 panorama = ExtResource("1_mn0sq")
@@ -69,21 +72,15 @@ metadata/_edit_lock_ = true
 
 [node name="Character" parent="." instance=ExtResource("2_7h8qb")]
 
-[node name="candle" parent="." instance=ExtResource("3_stger")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.549356, -0.5, 0.676431)
-
-[node name="candle2" parent="." instance=ExtResource("3_stger")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.236737, -0.5, 0.901648)
-
 [node name="BoxCandles" parent="." instance=ExtResource("4_2jois")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.23394, -0.221674, 0.38638)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
+[node name="platform" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.16638, -0.121735, -1.87844)
 size = Vector3(0.367188, 0.756531, 0.363281)
 
-[node name="cultist_book" parent="." instance=ExtResource("5_rosw0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.17621, 0.259564, -1.877)
+[node name="cultist_book" parent="platform" instance=ExtResource("5_rosw0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00983, 0.381299, 0.00144005)
 
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource("5_imgdt")
@@ -120,6 +117,18 @@ unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 0
 text = "Exit"
+
+[node name="CircleOfSacrifices" parent="." instance=ExtResource("7_udxhr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.325351, -0.46636, -2)
+
+[node name="CandleManager" type="Node" parent="."]
+script = ExtResource("7_520wy")
+
+[node name="candle" parent="CandleManager" instance=ExtResource("3_stger")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.549356, -0.5, 0.676431)
+
+[node name="candle2" parent="CandleManager" instance=ExtResource("3_stger")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.236737, -0.5, 0.901648)
 
 [node name="Chicken" parent="." instance=ExtResource("7_6s7ry")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.89504, 0, 0.268127)
