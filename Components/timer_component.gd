@@ -25,3 +25,11 @@ func start() -> void:
 
 func stop() -> void:
 	timer.stop()
+
+
+func pause() -> void:
+	timer.paused = true
+
+
+func unpause() -> void:
+	timer.paused = false

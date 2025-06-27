@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://Components/health_component.gd" id="3_sdtn5"]
 [ext_resource type="ArrayMesh" uid="uid://hwqwwsrku5oj" path="res://Scenes/Objects/Candle/Stages/candle_stage_1.tres" id="3_w2nyl"]
 [ext_resource type="ArrayMesh" uid="uid://dbhy5rgs1kal0" path="res://Scenes/Objects/Candle/Stages/candle_stage_2.tres" id="4_yg84n"]
-[ext_resource type="Script" path="res://Components/timer_component.gd" id="5_rs2o5"]
+[ext_resource type="PackedScene" uid="uid://2ugv84bjbs6d" path="res://Components/timer_component.tscn" id="5_6rlr2"]
 [ext_resource type="ArrayMesh" uid="uid://dgm4cs1q8slbp" path="res://Scenes/Objects/Candle/Stages/candle_stage_3.tres" id="5_s8mga"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4hu47"]
@@ -200,9 +200,7 @@ component_name = "interactable"
 script = ExtResource("3_sdtn5")
 component_name = "health"
 
-[node name="TimerComponent" type="Node" parent="."]
-script = ExtResource("5_rs2o5")
-component_name = "timer"
+[node name="TimerComponent" parent="." instance=ExtResource("5_6rlr2")]
 
 [node name="FireParticles" type="GPUParticles3D" parent="."]
 unique_name_in_owner = true

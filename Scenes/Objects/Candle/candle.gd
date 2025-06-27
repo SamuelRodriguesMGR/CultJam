@@ -6,20 +6,20 @@ var is_active := true
 
 
 func _interact() -> void:
-	var health_component = get_component("health") as HealthComponent
+	var health_component = ComponentLoaderUtil.get_component(self, "health") as HealthComponent
 	
 	if health_component.current_health <= 0:
 		GlobalSignals.want_object.emit("candle", want_object_callback)
 	else:
-		var timer_component = get_component("timer") as TimerComponent
+		var timer_component = ComponentLoaderUtil.get_component(self, "timer") as TimerComponent
 		timer_component.start()
 		turn_fire(true)
 
 
 func want_object_callback() -> void:
-	var health_component = get_component("health") as HealthComponent
+	var health_component = ComponentLoaderUtil.get_component(self, "health") as HealthComponent
 	health_component.restore_health()
-	var timer_component = get_component("timer") as TimerComponent
+	var timer_component = ComponentLoaderUtil.get_component(self, "timer") as TimerComponent
 	timer_component.start()
 	turn_fire(true)
 
@@ -28,12 +28,12 @@ func _on_timer_component_timeout() -> void:
 	if not is_active:
 		return
 	
-	var health_component = get_component("health") as HealthComponent
+	var health_component = ComponentLoaderUtil.get_component(self, "health") as HealthComponent
 	health_component.change_health(-damage)
 	
 	if randi_range(1, 5) == 1:
 		turn_fire(false)
-		var timer_component = get_component("timer") as TimerComponent
+		var timer_component = ComponentLoaderUtil.get_component(self, "timer") as TimerComponent
 		timer_component.stop()
 
 
@@ -48,14 +48,6 @@ func _on_health_component_health_updated(new_health: int) -> void:
 		%AnimationPlayer.play("state_3")
 	else:
 		%AnimationPlayer.play("state_4")
-
-
-func get_component(component_name: String) -> BaseComponent:
-	if not has_meta(component_name):
-		print(component_name + " not found on class " + str(self.get_class()))
-		return null
-	
-	return get_meta(component_name)
 
 
 func turn_fire(state: bool) -> void:

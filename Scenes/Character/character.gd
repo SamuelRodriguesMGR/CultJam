@@ -30,6 +30,7 @@ func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	GlobalSignals.want_carry.connect(want_carry_process)
 	GlobalSignals.want_object.connect(want_object_process)
+	GlobalSignals.interuction_type_request.connect(interuction_type_request_process)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -46,14 +47,6 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	#if not is_on_floor():
-		#velocity += get_gravity() * delta
-
-	# Handle Jump.
-	#if Input.is_action_just_pressed("ui_select") and is_on_floor():
-		#velocity.y = JUMP_VELOCITY
-
 	# Handle Sprint.
 	if Input.is_action_pressed("shift"):
 		speed = SPRINT_SPEED
@@ -97,7 +90,7 @@ func key_process(event: InputEventKey) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
-	if event.keycode == KEY_E:
+	if event.keycode == KEY_E and event.pressed:
 		var object := ray_cast_interact_process()
 		
 		if not object:
@@ -131,6 +124,7 @@ func want_object_process(object_name: String, callback: Callable) -> void:
 	
 	callback.call()
 
+
 func clear_object_hand():
 	# Очищает предмет в руке
 	
@@ -138,3 +132,10 @@ func clear_object_hand():
 	
 	for child in hand.get_children():
 		child.queue_free()
+
+
+func interuction_type_request_process(callback: Callable):
+	if carry_obj:
+		callback.call(InteractionRequestEnum.types.WANT_OBJECT)
+	else:
+		callback.call(InteractionRequestEnum.types.WANT_CARRY)

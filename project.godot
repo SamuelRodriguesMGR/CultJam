@@ -17,7 +17,7 @@ config/icon="res://Assets/images.png"
 
 [autoload]
 
-GlobalSignals="*res://global_signals.gd"
+GlobalSignals="*res://Tools/global_signals.gd"
 
 [display]
 
