@@ -1,6 +1,6 @@
 shader_type spatial;
+render_mode cull_disabled, unshaded, blend_add; // blend_add для корректного отображения частиц
 
-render_mode cull_disabled, unshaded;
 uniform sampler2D depth_texture : source_color, hint_depth_texture;
 uniform sampler2D screen_texture : source_color, hint_screen_texture, repeat_disable, filter_nearest;
 
@@ -16,14 +16,14 @@ uniform int color_levels : hint_range(2, 256) = 32;
 uniform bool enable_dithering = true;
 uniform float dither_strength : hint_range(0.0, 1.0) = 0.3;
 
-float hashOld12(vec2 p){
-	return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453 + (sin((TIME)) / noise_time_fac)) ;
+float hashOld12(vec2 p) {
+    return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453 + (sin(TIME) / noise_time_fac));
 }
 
-vec3 color_mix(vec3 a, vec3 b, float f ){
-	f = clamp(abs(f), 0,1);
-	float invf = 1.0 - f;
-	return (a*f) + (b*invf);
+vec3 color_mix(vec3 a, vec3 b, float f) {
+    f = clamp(abs(f), 0.0, 1.0);
+    float invf = 1.0 - f;
+    return (a * f) + (b * invf);
 }
 
 vec3 quantize_color(vec3 color, int levels) {
@@ -46,38 +46,42 @@ float dither(vec2 position, float brightness) {
 }
 
 void vertex() {
-  POSITION = vec4(VERTEX.xy, 1.0, 1.0);
+    POSITION = vec4(VERTEX.xy, 1.0, 1.0);
 }
 
-void fragment(){
-	vec3 screen_color = texture(screen_texture, SCREEN_UV).rgb;
-	vec2 screen_coords = SCREEN_UV * 2.0 - 1.0;
-	float depth = texture(depth_texture, SCREEN_UV).x;
-	vec3 ndc = vec3(screen_coords, depth);
+void fragment() {
+    vec4 screen_sample = texture(screen_texture, SCREEN_UV);
+    vec3 screen_color = screen_sample.rgb;
+    float alpha = screen_sample.a; // Сохраняем альфа-канал
+    
+    vec2 screen_coords = SCREEN_UV * 2.0 - 1.0;
+    float depth = texture(depth_texture, SCREEN_UV).x;
+    vec3 ndc = vec3(screen_coords, depth);
 
-	vec4 view = INV_PROJECTION_MATRIX * vec4(ndc, 1.0);
-	view.xyz /= view.w;
+    vec4 view = INV_PROJECTION_MATRIX * vec4(ndc, 1.0);
+    view.xyz /= view.w;
 
-	float linear_depth = -view.z;
+    float linear_depth = -view.z;
+    float depth_mask_inv = clamp((linear_depth - (fog_distance - fog_fade_range)) / fog_fade_range, 0.0, 1.0);
 
-	float depth_mask_inv = clamp((linear_depth - (fog_distance - fog_fade_range)) / fog_fade_range, 0.0, 1.0);
+    vec3 final_color = screen_color;
 
-	vec3 final_color = screen_color;
-
-	if (enable_noise){
-		vec3 twocolornoise = color_mix(fog_color, noise_color, hashOld12(screen_coords));
-		final_color = color_mix(twocolornoise, final_color, depth_mask_inv);
-	}
-	if (enable_fog){
-		final_color = color_mix(fog_color, final_color, depth_mask_inv);
-	}
-	if (enable_color_limitation){
-		final_color = quantize_color(final_color, color_levels);
-	}
-	if (enable_dithering){
-		float brightness = dot(final_color, vec3(0.3, 0.59, 0.11));
-		brightness += dither_strength * (dither(FRAGCOORD.xy, brightness) - 0.5);
-		final_color *= (1.0 + dither_strength * (dither(FRAGCOORD.xy, brightness) - 0.5));
-	}
-	ALBEDO = final_color;
+    if (enable_noise) {
+        vec3 twocolornoise = color_mix(fog_color, noise_color, hashOld12(screen_coords));
+        final_color = color_mix(twocolornoise, final_color, depth_mask_inv);
+    }
+    if (enable_fog) {
+        final_color = color_mix(fog_color, final_color, depth_mask_inv);
+    }
+    if (enable_color_limitation) {
+        final_color = quantize_color(final_color, color_levels);
+    }
+    if (enable_dithering) {
+        float brightness = dot(final_color, vec3(0.3, 0.59, 0.11));
+        brightness += dither_strength * (dither(FRAGCOORD.xy, brightness) - 0.5);
+        final_color *= (1.0 + dither_strength * (dither(FRAGCOORD.xy, brightness) - 0.5));
+    }
+    
+    ALBEDO = final_color;
+    ALPHA = alpha; // Устанавливаем альфа-канал (исправлено с ALPH на ALPHA)
 }

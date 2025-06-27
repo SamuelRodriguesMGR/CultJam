@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://dyen0wolqrp66"
+path.s3tc="res://.godot/imported/chicken_cage_RGB_1b1bdf658c4c400f9f8b1b8bfc1d5872_Cage_BaseColor.png-1e06aa2cd3a801a9552962da60018eda.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "6f738dc27865fa9a7f3ef136430c0f96"
+}
+
+[deps]
+
+source_file="res://Assets/chicken_cage/chicken_cage_RGB_1b1bdf658c4c400f9f8b1b8bfc1d5872_Cage_BaseColor.png"
+dest_files=["res://.godot/imported/chicken_cage_RGB_1b1bdf658c4c400f9f8b1b8bfc1d5872_Cage_BaseColor.png-1e06aa2cd3a801a9552962da60018eda.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

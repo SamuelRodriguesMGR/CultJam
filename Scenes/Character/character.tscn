@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://brbyx3et3nabv"]
 
-[ext_resource type="Script" uid="uid://ckkgg0beqyu6l" path="res://Scenes/Character/character.gd" id="1_sxv8h"]
-[ext_resource type="Shader" uid="uid://c43pxa4y4p802" path="res://Shaders/camera.gdshader" id="2_isa4f"]
+[ext_resource type="Script" path="res://Scenes/Character/character.gd" id="1_sxv8h"]
+[ext_resource type="Shader" path="res://Shaders/camera.gdshader" id="2_isa4f"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xd2s6"]
 
@@ -46,5 +46,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, -0.189018, -0.7)
 
 [node name="ShaderMesh" type="MeshInstance3D" parent="Body/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.16)
-visible = false
 mesh = SubResource("QuadMesh_wn3yd")
