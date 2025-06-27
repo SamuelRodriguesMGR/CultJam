@@ -2,8 +2,9 @@ extends StaticBody3D
 
 
 const ITEM = preload("res://Assets/chicken/Chicken.glb")
-@onready var points_chicken  : Node = $PointsChicken
 
+@onready var points_chicken  : Node = $PointsChicken
+var carry_obj = "Chicken2"
 
 func _ready() -> void:
 	for point in points_chicken.get_children():
