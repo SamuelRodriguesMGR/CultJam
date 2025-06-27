@@ -1,8 +1,28 @@
-[gd_scene load_steps=3 format=3 uid="uid://brbyx3et3nabv"]
+[gd_scene load_steps=6 format=3 uid="uid://brbyx3et3nabv"]
 
-[ext_resource type="Script" path="res://Scenes/Character/character.gd" id="1_sxv8h"]
+[ext_resource type="Script" uid="uid://ckkgg0beqyu6l" path="res://Scenes/Character/character.gd" id="1_sxv8h"]
+[ext_resource type="Shader" uid="uid://c43pxa4y4p802" path="res://Shaders/camera.gdshader" id="2_isa4f"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xd2s6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_syf7y"]
+render_priority = 0
+shader = ExtResource("2_isa4f")
+shader_parameter/enable_fog = true
+shader_parameter/fog_color = Color(0, 0, 0, 1)
+shader_parameter/noise_color = Color(0, 0, 0, 1)
+shader_parameter/fog_distance = 50.0
+shader_parameter/fog_fade_range = 20.0
+shader_parameter/enable_noise = true
+shader_parameter/noise_time_fac = 3.0
+shader_parameter/enable_color_limitation = true
+shader_parameter/color_levels = 256
+shader_parameter/enable_dithering = false
+shader_parameter/dither_strength = 0.3
+
+[sub_resource type="QuadMesh" id="QuadMesh_wn3yd"]
+material = SubResource("ShaderMaterial_syf7y")
+size = Vector2(2, 2)
 
 [node name="Character" type="CharacterBody3D"]
 script = ExtResource("1_sxv8h")
@@ -23,3 +43,8 @@ target_position = Vector3(0, 0, -2)
 [node name="Hand" type="Node3D" parent="Body/Camera3D"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, -0.189018, -0.7)
+
+[node name="ShaderMesh" type="MeshInstance3D" parent="Body/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.16)
+visible = false
+mesh = SubResource("QuadMesh_wn3yd")
