@@ -47,6 +47,17 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	# Взаимодействие чарактера с ригидом, толькать можно короче
+	for col_idx in get_slide_collision_count():
+		var col := get_slide_collision(col_idx)
+		if col.get_collider() is RigidBody3D:
+			col.get_collider().apply_central_impulse(-col.get_normal() * 0.3)
+			col.get_collider().apply_impulse(-col.get_normal() * 0.01, col.get_position())
+	
+	# Add the gravity.
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+		
 	# Handle Sprint.
 	if Input.is_action_pressed("shift"):
 		speed = SPRINT_SPEED
