@@ -1,16 +1,12 @@
-extends RigidBody3D
+extends StaticBody3D
 
 
-const CANDLE = preload("uid://caq83vst1bq6g")
+const ITEM = preload("uid://caq83vst1bq6g")
+
+@onready var carry_component: CarryComponent = $CarryComponent
+var carry_obj = "candle"
 
 func _on_interactable_component_interacted() -> void:
 	assert(has_meta("carry"))
-	GlobalSignals.interuction_type_request.emit(_question_callback)
-
-
-func _question_callback(type: InteractionRequestEnum.types) -> void:
-	match type:
-		InteractionRequestEnum.types.WANT_CARRY:
-			GlobalSignals.want_carry.emit(CANDLE)
-		InteractionRequestEnum.types.WANT_OBJECT:
-			GlobalSignals.want_object.emit("candle", func(): pass)
+	GlobalSignals.interuction_type_request.emit(carry_component._question_callback)
+	

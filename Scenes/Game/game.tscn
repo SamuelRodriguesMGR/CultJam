@@ -8,6 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://3tohsg0odenm" path="res://Scenes/Objects/Book/cultist_book.tscn" id="5_rosw0"]
 [ext_resource type="Script" path="res://Scenes/Game/candle_manager.gd" id="7_520wy"]
 [ext_resource type="PackedScene" uid="uid://nj5aw8blfs55" path="res://Scenes/Objects/CircleOfSacrifices/circle_of_sacrifices.tscn" id="7_udxhr"]
+[ext_resource type="PackedScene" uid="uid://cry3uan6bwhru" path="res://Scenes/Objects/Chicken/chicken.tscn" id="7_6s7ry"]
+[ext_resource type="PackedScene" uid="uid://bussm7m1ebsu8" path="res://Scenes/Objects/BoxChicken/box_chicken.tscn" id="8_s4a7l"]
+
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_6d41t"]
 panorama = ExtResource("1_mn0sq")
@@ -126,6 +129,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.549356, -0.5, 0.676431)
 
 [node name="candle2" parent="CandleManager" instance=ExtResource("3_stger")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.236737, -0.5, 0.901648)
+
+[node name="Chicken" parent="." instance=ExtResource("7_6s7ry")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.89504, 0, 0.268127)
+
+[node name="BoxChicken" parent="." instance=ExtResource("8_s4a7l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.380597, 3)
 
 [connection signal="pressed" from="UI/Menu/ButtonResume" to="UI" method="_on_button_resume_pressed"]
 [connection signal="pressed" from="UI/Menu/ButtonExit" to="UI" method="_on_button_exit_pressed"]
