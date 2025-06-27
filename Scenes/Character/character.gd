@@ -86,10 +86,7 @@ func _headbob(time: float) -> Vector3:
 	return pos
 
 
-func key_process(event: InputEventKey) -> void:
-	if event.is_action_pressed("ui_cancel"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	
+func key_process(event: InputEventKey) -> void:	
 	if event.keycode == KEY_E:
 		interact_key_event_process(event)
 
