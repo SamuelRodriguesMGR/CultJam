@@ -90,14 +90,24 @@ func key_process(event: InputEventKey) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
-	if event.keycode == KEY_E and event.pressed:
-		var object := ray_cast_interact_process()
+	if event.keycode == KEY_E:
+		interact_key_event_process(event)
+
+
+func interact_key_event_process(event: InputEventKey) -> void:
+	var object := ray_cast_interact_process()
 		
-		if not object:
-			return
-		
+	if not object:
+		return
+	
+	if event.pressed and not event.is_echo():
 		if object.has_meta("interactable"):
 			(object.get_meta("interactable") as InteractableComponent).interact()
+		if object.has_meta("continous_interaction"):
+			(object.get_meta("continous_interaction") as ContinuousInteractiveComponent).interact()
+	elif not event.pressed:
+		if object.has_meta("continous_interaction"):
+			(object.get_meta("continous_interaction") as ContinuousInteractiveComponent).stop_interacting()
 
 
 func ray_cast_interact_process() -> Object:

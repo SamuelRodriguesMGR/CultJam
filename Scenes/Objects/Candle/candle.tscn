@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Scenes/Objects/Candle/candle.gd" id="1_1yjq0"]
 [ext_resource type="ArrayMesh" uid="uid://ds8i51iexl2mv" path="res://Scenes/Objects/Candle/Stages/candle_stage_0.tres" id="2_7aeqd"]
-[ext_resource type="Script" path="res://Components/interactable_component.gd" id="2_34g7k"]
 [ext_resource type="ArrayMesh" uid="uid://cagngrgnsflxa" path="res://Scenes/Objects/Candle/Stages/candle_stage_4.tres" id="2_nw4g1"]
+[ext_resource type="PackedScene" uid="uid://b5jka2gygoge3" path="res://Components/interactable_component.tscn" id="3_n82m5"]
 [ext_resource type="Script" path="res://Components/health_component.gd" id="3_sdtn5"]
 [ext_resource type="ArrayMesh" uid="uid://hwqwwsrku5oj" path="res://Scenes/Objects/Candle/Stages/candle_stage_1.tres" id="3_w2nyl"]
 [ext_resource type="ArrayMesh" uid="uid://dbhy5rgs1kal0" path="res://Scenes/Objects/Candle/Stages/candle_stage_2.tres" id="4_yg84n"]
@@ -192,9 +192,7 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.210571, 0)
 shape = SubResource("BoxShape3D_4hu47")
 
-[node name="InteractableComponent" type="Node" parent="."]
-script = ExtResource("2_34g7k")
-component_name = "interactable"
+[node name="InteractableComponent" parent="." instance=ExtResource("3_n82m5")]
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("3_sdtn5")

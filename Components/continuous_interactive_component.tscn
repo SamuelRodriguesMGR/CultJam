@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dypqsqmnry031"]
+
+[ext_resource type="Script" path="res://Components/continuous_interactive_component.gd" id="1_7ueyq"]
+
+[node name="ContinuousInteractiveComponent" type="Node"]
+script = ExtResource("1_7ueyq")
+component_name = "continous_interaction"
