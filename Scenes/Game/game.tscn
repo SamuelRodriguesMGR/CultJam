@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ba7giv1jubl0f"]
+[gd_scene load_steps=18 format=3 uid="uid://ba7giv1jubl0f"]
 
 [ext_resource type="Texture2D" uid="uid://ckb5ucep7731m" path="res://Assets/subdued_blue_nebulae_1.png" id="1_mn0sq"]
 [ext_resource type="PackedScene" uid="uid://brbyx3et3nabv" path="res://Scenes/Character/character.tscn" id="2_7h8qb"]
@@ -6,11 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://picmfcolryw7" path="res://Scenes/Objects/BoxCandles/box_candles.tscn" id="4_2jois"]
 [ext_resource type="Script" path="res://Scenes/Game/ui.gd" id="5_imgdt"]
 [ext_resource type="PackedScene" uid="uid://3tohsg0odenm" path="res://Scenes/Objects/Book/cultist_book.tscn" id="5_rosw0"]
+[ext_resource type="PackedScene" uid="uid://cry3uan6bwhru" path="res://Scenes/Objects/Chicken/chicken.tscn" id="7_6s7ry"]
 [ext_resource type="Script" path="res://Scenes/Game/candle_manager.gd" id="7_520wy"]
 [ext_resource type="PackedScene" uid="uid://nj5aw8blfs55" path="res://Scenes/Objects/CircleOfSacrifices/circle_of_sacrifices.tscn" id="7_udxhr"]
-[ext_resource type="PackedScene" uid="uid://cry3uan6bwhru" path="res://Scenes/Objects/Chicken/chicken.tscn" id="7_6s7ry"]
 [ext_resource type="PackedScene" uid="uid://bussm7m1ebsu8" path="res://Scenes/Objects/BoxChicken/box_chicken.tscn" id="8_s4a7l"]
-
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_6d41t"]
 panorama = ExtResource("1_mn0sq")
