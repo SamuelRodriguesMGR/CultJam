@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scenes/Objects/BoxChicken/box_chicken.gd" id="1_em5q8"]
 [ext_resource type="Texture2D" uid="uid://dyen0wolqrp66" path="res://Assets/chicken_cage/chicken_cage_RGB_1b1bdf658c4c400f9f8b1b8bfc1d5872_Cage_BaseColor.png" id="1_sifa2"]
 [ext_resource type="Texture2D" uid="uid://kksrnm48o017" path="res://Assets/chicken_cage/chicken_cage_A_4038ce0bd16c4935bc68c0b1ae74c571_Cage_Opacity.png" id="2_6w0i0"]
-[ext_resource type="Script" path="res://Components/interactable_component.gd" id="4_8leih"]
+[ext_resource type="Script" path="res://Components/InteractableComponent/interactable_component.gd" id="4_8leih"]
 [ext_resource type="Script" path="res://Components/carry_component.gd" id="5_5i12l"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_klue7"]
